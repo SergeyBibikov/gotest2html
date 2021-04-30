@@ -20,7 +20,11 @@ loop:
 		case "run":
 			totalTests++
 			runCounter++
-			runTimestamp = v["Time"].(string)
+			if _, ok := v["Time"]; ok {
+				runTimestamp = v["Time"].(string)
+			} else {
+				runTimestamp = "----"
+			}
 			if name == "" {
 				name = v["Test"].(string)
 			}
